@@ -25,6 +25,31 @@ exports.getProductById = (req, res) => {
     }, 1500);
 }
 
+exports.getAllProductsByLocation = (req, res) => {
+    let locationId = req.params.locationId
+    let allProduct = createProducts();
+
+    setTimeout(() => {
+
+        var products = new Array()
+
+        for (let key in allProduct) {
+            let product = allProduct[key]
+            if (product.itemLocation && product.itemLocation == locationId) {
+                products.push(product)
+            }
+        }
+
+        if (products.length > 0) {
+            return res.status(200).json(products)
+        } else {
+            return res.status(404).json({
+                error: "Products does not exist on mentioned location"
+            })
+        }
+    }, 1500)
+}
+
 exports.getProductByLocationId = (req, res) => {
     let productId = req.params.productId;
     let locationId = req.params.locationId
@@ -92,10 +117,85 @@ function createProducts() {
         "itemUnitPrice": 5.5
     }
 
+    let obj4 = {
+        "itemCategory": "Fruits",
+        "itemCode": "Apple_Pack_12",
+        "itemDescription": "Apple with Pack 12",
+        "itemLocation": "HBS1000",
+        "itemMisc": "Other infor",
+        "itemName": "Apple",
+        "itemQuantity": 1,
+        "itemThumbnailURL": "https://images-na.ssl-images-amazon.com/images/I/918YNa3bAaL._SX522_.jpg",
+        "itemTotalAmount": 10.5,
+        "itemUniqueId": "Apple_Pack_12",
+        "itemUnitPrice": 10.5
+    }
+
+    let obj5 = {
+        "itemCategory": "Fruits",
+        "itemCode": "Apple_Pack_6",
+        "itemDescription": "Apple with Pack 6",
+        "itemLocation": "HBS1000",
+        "itemMisc": "Other infor",
+        "itemName": "Apple",
+        "itemQuantity": 1,
+        "itemThumbnailURL": "https://images-na.ssl-images-amazon.com/images/I/918YNa3bAaL._SX522_.jpg",
+        "itemTotalAmount": 8.5,
+        "itemUniqueId": "Apple_Pack_6",
+        "itemUnitPrice": 8.5
+    }
+
+    let obj6 = {
+        "itemCategory": "Drinks",
+        "itemCode": "CokeCola_Zero_Pack_24",
+        "itemDescription": "Coke Drinks",
+        "itemLocation": "HBS2000",
+        "itemMisc": "Other infor",
+        "itemName": "Coke Drinks",
+        "itemQuantity": 1,
+        "itemThumbnailURL": "https://images-na.ssl-images-amazon.com/images/I/918YNa3bAaL._SX522_.jpg",
+        "itemTotalAmount": 5.5,
+        "itemUniqueId": "CokeCola_Zero_Pack_24",
+        "itemUnitPrice": 5.5
+    }
+
+    let obj7 = {
+        "itemCategory": "Fruits",
+        "itemCode": "Apple_Pack_20",
+        "itemDescription": "Apple with Pack 12",
+        "itemLocation": "HBS2000",
+        "itemMisc": "Other infor",
+        "itemName": "Apple",
+        "itemQuantity": 1,
+        "itemThumbnailURL": "https://images-na.ssl-images-amazon.com/images/I/918YNa3bAaL._SX522_.jpg",
+        "itemTotalAmount": 11.5,
+        "itemUniqueId": "Apple_Pack_20",
+        "itemUnitPrice": 11.5
+    }
+
+    let obj8 = {
+        "itemCategory": "Fruits",
+        "itemCode": "Apple_Pack_4",
+        "itemDescription": "Apple with Pack 6",
+        "itemLocation": "HBS2000",
+        "itemMisc": "Other infor",
+        "itemName": "Apple",
+        "itemQuantity": 1,
+        "itemThumbnailURL": "https://images-na.ssl-images-amazon.com/images/I/918YNa3bAaL._SX522_.jpg",
+        "itemTotalAmount": 8.5,
+        "itemUniqueId": "Apple_Pack_4",
+        "itemUnitPrice": 8.5
+    }
+
     let mainObject = {
         "Bobs_DarkApple": obj1,
         "app010203": obj2,
-        "CokeCola_Zero_Pack_12": obj3
+        "CokeCola_Zero_Pack_12": obj3,
+        "Apple_Pack_12": obj4,
+        "Apple_Pack_6": obj5,
+        "CokeCola_Zero_Pack_24": obj6,
+        "Apple_Pack_20": obj7,
+        "Apple_Pack_4": obj8
     }
 
     return mainObject
