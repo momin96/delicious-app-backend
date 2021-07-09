@@ -2,9 +2,9 @@
 exports.getAllProducts = (req, res) => {
 
     let getProducts = createProducts();
-    setTimeout(() => {
-        return res.status(200).json(getProducts);
-    }, 1500)
+    // setTimeout(() => {
+    return res.status(200).json(getProducts);
+    // }, 1500)
 }
 
 exports.getProductById = (req, res) => {
@@ -14,40 +14,40 @@ exports.getProductById = (req, res) => {
 
     let product = getProducts[productId]
 
-    setTimeout(() => {
-        if (product != null) {
-            return res.status(200).json(product);
-        } else {
-            return res.status(404).json({
-                error: "Queried product does not available"
-            })
-        }
-    }, 1500);
+    // setTimeout(() => {
+    if (product != null) {
+        return res.status(200).json(product);
+    } else {
+        return res.status(404).json({
+            error: "Queried product does not available"
+        })
+    }
+    // }, 1500);
 }
 
 exports.getAllProductsByLocation = (req, res) => {
     let locationId = req.params.locationId
     let allProduct = createProducts();
 
-    setTimeout(() => {
+    // setTimeout(() => {
 
-        var products = new Array()
+    var products = new Array()
 
-        for (let key in allProduct) {
-            let product = allProduct[key]
-            if (product.itemLocation && product.itemLocation == locationId) {
-                products.push(product)
-            }
+    for (let key in allProduct) {
+        let product = allProduct[key]
+        if (product.itemLocation && product.itemLocation == locationId) {
+            products.push(product)
         }
+    }
 
-        if (products.length > 0) {
-            return res.status(200).json(products)
-        } else {
-            return res.status(404).json({
-                error: "Products does not exist on mentioned location"
-            })
-        }
-    }, 1500)
+    if (products.length > 0) {
+        return res.status(200).json(products)
+    } else {
+        return res.status(404).json({
+            error: "Products does not exist on mentioned location"
+        })
+    }
+    // }, 1500)
 }
 
 exports.getProductByLocationId = (req, res) => {
@@ -56,20 +56,20 @@ exports.getProductByLocationId = (req, res) => {
 
     let allProduct = createProducts();
 
-    setTimeout(() => {
-        for (let key in allProduct) {
-            let product = allProduct[key]
-            if (product.itemLocation) {
-                if (product.itemLocation == locationId && key == productId) {
-                    return res.status(200).json(product)
-                }
+    // setTimeout(() => {
+    for (let key in allProduct) {
+        let product = allProduct[key]
+        if (product.itemLocation) {
+            if (product.itemLocation == locationId && key == productId) {
+                return res.status(200).json(product)
             }
         }
+    }
 
-        return res.status(404).json({
-            error: "product does not exist on mentioned location"
-        })
-    }, 1000)
+    return res.status(404).json({
+        error: "product does not exist on mentioned location"
+    })
+    // }, 1000)
 }
 
 
